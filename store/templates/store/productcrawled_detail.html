@@ -1,0 +1,46 @@
+
+
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="box-element product">
+<form action="{% url 'store:cart_add' product.id %}" method="post">
+{% csrf_token %} 
+  
+    <div class="container dark-grey-text mt-5">
+
+          <div class="p-4">
+
+            <p>{{ product_title }}</p>
+            <p class="lead">
+                {% if product_discount_price %}
+                <span class="mr-1">
+                  <del>${{ product_price}}</del>
+                </span>
+                <span>${{ product_discount_price }}</span>
+                {% else %}
+                <span>${{product_price}}</span>
+                {% endif %}
+              </p>
+            <p>{{ product_description}}</p>
+
+          {% for img in product_image %}
+        
+          <a href="#" class="image"><img src="{{ img.image_url}}" class="img-fluid" alt="" width="100" height="100"></a>
+            
+          {% endfor %}
+          <p>{{form1.as_p }}</p>
+          <p>{{form2.as_p }}</p>
+          <input type="submit" value="add to cart"><i class="fas fa-shopping-cart ml-1"></i>
+
+          </div>
+ 
+      <hr>
+    </div>
+  
+</form>
+</div>
+{% endblock content %}
+

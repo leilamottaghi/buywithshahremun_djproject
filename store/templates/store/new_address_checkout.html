@@ -1,0 +1,98 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+
+
+<!-- 
+<table class="table table-bordered">
+    <form method="post">
+        {% csrf_token %} 
+        {{form.as_table }}
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Save" class="btn btn-primary">
+            </td>
+        </tr>
+    </form>
+    
+</table>
+ -->
+
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="container">
+		<div class="py-5 text-center">
+			<h2>ایجاد ادرس جدید </h2>
+		</div>
+
+
+<div class="row">
+   
+    <div class="col-md-6 mb-3">
+        {{form.name|as_crispy_field}}
+        <div class="invalid-feedback"> Valid first name is required. </div>
+    </div>
+    <div class="col-md-6 mb-3">
+
+        {{form.last_name|as_crispy_field}}	
+
+        <div class="invalid-feedback"> Valid last name is required. </div>
+    </div>
+</div>
+<div class="mb-3">					
+    {{form.address_title|as_crispy_field}}	
+
+    <div class="invalid-feedback"> Please enter your shipping address. </div>
+</div>	
+<div class="mb-3">					
+    {{form.address|as_crispy_field}}	
+
+    <div class="invalid-feedback"> Please enter your shipping address. </div>
+</div>
+<div class="mb-3">					
+    {{form.phone_number|as_crispy_field}}	
+
+    <div class="invalid-feedback"> Please enter your shipping address. </div>
+</div>
+
+
+
+
+
+
+ 
+<div class="row">
+    <div class="col-md-5 mb-3">
+        {{form.province|as_crispy_field}}
+
+        <div class="invalid-feedback"> Please select a valid country. </div>
+    </div>
+
+    
+    <div class="col-md-4 mb-3">
+        {{form.county|as_crispy_field}}
+
+        <div class="invalid-feedback"> Please provide a valid state. </div>
+    </div> 
+    <div class="col-md-3 mb-3">
+        {{form.zip|as_crispy_field}}
+
+        <div class="invalid-feedback"> Zip code required. </div>
+    </div>
+    
+    
+</div>
+<div class="md-3 ">
+    {{order_comment|crispy}}
+</div>
+<hr class="mb-4">
+<input type="submit" value="Save" class="btn btn-primary">
+<input type=button class="btn btn-primary btn-success"  value="Back" onClick="javascript:history.go(-1);">
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4"dir='rtl'>
+    <h3 class="my-4 border-bottom pb-1"style="text-align: center;"> جزییات  سفارش  </h3>
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'store/user-sidebar.html'%}
+        </div>
+        <div class="col-md-9">
+            
+            <table class="table table-bordered">
+                <div class="box-element">
+                    <table class="table table-striped table-dark" >
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">عکس</th>
+                            <th scope="col">نام محصول</th>
+                            <th scope="col">تعداد</th>
+                            <th scope="col">قیمت واحد </th>
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+                          {% for item in order_details %}
+                          <tr>
+                              <th scope="row">{{forloop.counter}}</th>
+						                  <th><img src="{{ item.product.images.first.image_url}}" class="img-fluid" alt="" width="50" height="50"></th>             
+                              <td>{{item.product}}</td>
+                              <td>{{item.quantity}}</td>
+                              <td>{{item.price}}</td>
+                          </tr>
+                          {% endfor %}
+                          
+                          <tr>
+                            <th>مجموع:<strong>تومان{{order.get_total_price}}</strong></th>
+                            <th>آِیتم:<strong>{{order.get_total_quantity}}</strong></th>
+                          </tr>
+                          
+                          <a  style="float:right; margin:5px;text-align: center;" class="btn btn-success" href="{% url 'store:orders_history'  %}"> بازگشت</a>
+
+                                             
+                </div>
+
+            </table>
+
+        </div>
+
+    </div>
+</main>
+{% endblock %}

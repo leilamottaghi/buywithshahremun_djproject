@@ -1,0 +1,27 @@
+{% extends 'store/main.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}ثبت نام{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2  style="text-align: center;">ثبت  نام</h2>
+                <div class="card">
+                    <div class="card-header">{{ block.super }}</div>
+                    <div class="card-body">
+                        <form method="post" novalidate style="text-align: right;">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button type="submit" class="btn btn-primary">{{ 'Send'|capfirst }}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

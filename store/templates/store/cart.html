@@ -1,0 +1,103 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+{% load humanize %}
+
+<section class="h-100 h-custom">
+	<div class="container py-5 h-100">
+	  <div class="row d-flex justify-content-center align-items-center h-100">
+		<div class="col-12">
+		  <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+			<div class="card-body p-0">
+			  <div class="row g-0">
+				<div class="col-lg-8">
+				  <div class="p-5">
+					<div class="d-flex justify-content-between align-items-center mb-5" dir="rtl">
+						<h1 class="fw-bold mb-0 text-black">سبد خرید</h1>
+						<h6 class="mb-0 text-muted">{{cart|length}}</h6>
+					  </div>
+					  
+					<hr class="my-4">
+					{% for item in cart %}
+					<div class="row mb-4 d-flex justify-content-between align-items-center">
+				  
+					  <div class="col-md-2 col-lg-2 col-xl-2">
+						<img src="{{ item.product.images.first.image_url}}"
+						  class="img-fluid rounded-3" alt="" width="50" height="50">
+					  </div>
+				  
+					  <div class="col-md-3 col-lg-3 col-xl-3">
+						<h6 class="text-black mb-0 text-end">{{item.product}}</h6>
+					  </div>
+				  
+					  <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+						<a href="{% url 'store:minus_quantity_cart_item' item.product.id  %}">
+						  <img src="{% static 'images/glyphicons-halflings-100-circle-minus@2x.png' %}">
+						</a>
+						{{item.quantity}}
+						<a href="{% url 'store:plus_quantity_cart_item' item.product.id  %}">
+						  <img src="{% static 'images/glyphicons-halflings-99-circle-plus@2x.png' %}">
+						</a>
+					  </div>
+				  
+					  <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+						<h6 class="mb-0 text-end">تومان{{item.price|floatformat:0|intcomma}}</h6>
+					  </div>
+				  
+
+
+					  <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+						<a href="{% url 'store:cart_remove' item.product.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+							<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+							<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+						  </svg></a></a>
+					  </div>
+
+					  
+					</div>
+					{% endfor %}
+					<hr class="my-4">
+					
+	
+					<div class="pt-5">
+					  <h6 class="mb-0">
+							<a  class="fas fa-long-arrow-alt-left me-2" href="{% url 'store:home' %}">&#x2190; بازگشت به فروشگاه</a>
+						</h6>
+						</div>
+				  </div>
+				</div>
+				<div class="col-lg-4 bg-grey" dir="rtl">
+					<div class="p-5">
+					  <h3 class="fw-bold mb-5 mt-2 pt-1">خلاصه سفارش</h3>
+					  <hr class="my-4">
+					  <div class="d-flex justify-content-between mb-4">
+						<h5 class="text-uppercase">آیتم {{cart|length}}</h5>
+					  </div>
+					  <hr class="my-4">
+					  
+					  <div class="d-flex justify-content-between mb-5">
+						<h5 class="text-uppercase">قیمت کل</h5>
+						<h5> {{ cart.get_total_price |floatformat:0|intcomma}}تومان</h5>
+					  </div>
+					  
+					  <a style="float:left; margin:5px;" class="btn btn-dark btn-block btn-lg" href="{% url 'store:create' %}">تسویه حساب</a>
+					  <br class="my-4">
+
+					</div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+{% endblock content %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+<div class="list-group text-align">
+    <a href="{% url 'store:my_dashboard' %}" class="list-group-item {% if request.path == '/my_dashboard/' %}active{% endif %} ">داشبورد</a>
+    <a href="{% url 'store:edit_profile' %}" class="list-group-item {% if request.path == '/edit_profile/' %}active{% endif %} ">پروفایل</a>
+    <a href="{% url 'store:orders_history' %}" class="list-group-item {% if request.path == '/orders_history/' %}active{% endif %} ">سفارش ها</a>
+    <a href="{% url 'store:my_address' %}" class="list-group-item {% if request.path == '/my_address/' %}active{% endif %} ">آدرس ها</a>
+    <a href="{% url 'accounts:user_logout' %}" class="text-danger list-group-item">خروج از حساب کاربری</a>
+
+</div>
+

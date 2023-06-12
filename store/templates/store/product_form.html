@@ -1,0 +1,39 @@
+
+{% extends 'store/main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load custom_filters %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header" style="text-align: center;">مشخصات محصول خود را در این فرم وارد کنید</div>
+        <div class="card-body" >
+          <form action="{% url 'store:cart_add' product.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+              <label for="{{ form1.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form1.label }}</label>
+              <div class="col-md-8" style="text-align: right;">
+                {{ form1 }}
+              </div>
+            </div>
+            <div class="form-group row" dir="rtl">
+              <label for="{{ form2.id_for_label }}" class="col-md-4 col-form-label text-md-right"dir="rtl">{{ form2.label }}</label>
+              <div class="col-md-8" style="text-align: right;"dir="rtl">
+                {{ form2 }}
+              </div>
+            </div>
+            <div class="form-group row mb-0">
+              <div class="col-md-8 offset-md-4">
+                <button type="submit" class="btn btn-primary">افزودن به سبد خرید <i class="fas fa-shopping-cart ml-1"></i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 
+

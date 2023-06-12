@@ -1,0 +1,38 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<main class="container my-4" dir="rtl">
+    <h3 class="my-4 border-bottom pb-1 text-right"> ویرایش پروفایل</h3>
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'store/user-sidebar.html'%}
+        </div>
+        <div class="col-md-9">
+            {% if msg %}
+                <p class="text-success text-right">{{msg}}</p>
+            {% endif %}
+            <table class="table table-bordered">
+                <form method="post" style="text-align: right;"dir="rtl">
+                    {% csrf_token %} 
+                    <!-- {{form |crispy}} -->
+                    <label for="{{ form.id_for_label }}" class="col-md-4 col-form-label text-md-right"dir="rtl">{{ form.label }}</label>
+                    <div class="col-md-8" style="text-align: right;"dir="rtl">
+                        {% if 'algorithm: pbkdf2_sha256' not in form %}
+                            {{ form }}
+                        {% endif %}
+                    </div>
+                    <tr>
+                        <td colspan="2"class="text-right">
+                            <input type="submit" value="ذخیره" class="btn btn-primary">
+                        </td>
+                    </tr>
+                </form>
+
+            </table>
+
+        </div>
+
+    </div>
+</main>
+{% endblock %}
